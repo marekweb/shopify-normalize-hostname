@@ -26,6 +26,8 @@ normalizeHostname('fancy-widgets.myshopify.com');
 
 Each Shopify store is uniquely identified by a **hostname** which consists of a subdomain on the `myshopify.com` domain.
 
+This is true regardless of whether the store has its own custom domain. It's always identified by a `myshopify.com` hostname behind the scenes.
+
 Here are examples of store hostnames:
 
 - `shiny-trinkets.myshopify.com`
@@ -42,7 +44,7 @@ When dealing with the Shopify API, this hostname is the primary way to identify 
 
 Because the `myshopify.com` part is always the same, you can store just the **subdomain** of the hostname as the identifier.
 
-## Definition of valid hostname
+## Definition of Valid Hostname
 
 Here's how the Shopify documentation defines a valid hostname:
 
