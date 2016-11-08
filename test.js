@@ -21,7 +21,7 @@ test('valid hostname should return shop name', function (t) {
   );
 
   t.equal(
-    f('fancy-widgets.myshopify.com', {returnHostname: true}),
+    f('fancy-widgets.myshopify.com', true),
     'fancy-widgets.myshopify.com'
   );
 
@@ -56,6 +56,16 @@ test('hostname with extra subdomains should return null', function (t) {
   t.end();
 });
 
+test('myshopify.com should return null', function (t) {
+  t.equal(f('myshopify.com'), null);
+  t.end();
+});
+
+test('other domain should return null', function (t) {
+  t.equal(f('example.com'), null);
+  t.end();
+});
+
 test('hostname with trailing dot should return null', function (t) {
   t.equal(f('fancy-widgets.myshopify.com.'), null);
 
@@ -71,7 +81,7 @@ test('url without myshopify.com should return null', function (t) {
 test('hostname with uppercase letters should be normalized to lowercase', function (t) {
   t.equal(f('Fancy-Widgets.MyShopify.com'), 'fancy-widgets');
 
-  t.equal(f('Fancy-Widgets.MyShopify.com', {returnHostname: true}), 'fancy-widgets.myshopify.com');
+  t.equal(f('Fancy-Widgets.MyShopify.com', true), 'fancy-widgets.myshopify.com');
 
   t.end();
 });
@@ -89,7 +99,7 @@ test('url with http should return normalized value', function (t) {
   );
 
   t.equal(
-    f('http://shiny-trinkets.myshopify.com', {returnHostname: true}),
+    f('http://shiny-trinkets.myshopify.com', true),
     'shiny-trinkets.myshopify.com'
   );
 
@@ -103,7 +113,7 @@ test('url with https should return normalized value', function (t) {
   );
 
   t.equal(
-    f('https://shiny-trinkets.myshopify.com', {returnHostname: true}),
+    f('https://shiny-trinkets.myshopify.com', true),
     'shiny-trinkets.myshopify.com'
   );
 
@@ -117,7 +127,7 @@ test('url with a path should return normalized value', function (t) {
   );
 
   t.equal(
-    f('http://shiny-trinkets.myshopify.com/admin/apps', {returnHostname: true}),
+    f('http://shiny-trinkets.myshopify.com/admin/apps', true),
     'shiny-trinkets.myshopify.com'
   );
 

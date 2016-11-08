@@ -18,8 +18,18 @@ The store hostname can always be re-created from the store subdomain by appendin
 
 ## Usage
 
+```ts
+normalizeOutput(hostname: string, returnFullHostname: boolean): string;
+```
+
 ```js
+var normalizeOutput = require('shopify-normalize-output');
+
 normalizeHostname('fancy-widgets.myshopify.com');
+// Output: "fancy-widgets"
+
+normalizeHostname('fancy-widgets.myshopify.com', true);
+// Output: "fancy-widgets.myshopify.com"
 ```
 
 ## Background: Shopify Store Hostnames

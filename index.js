@@ -4,7 +4,7 @@ var ENDS_WITH_MYSHOPIFY = /\.myshopify.com$/i;
 
 var url = require('url');
 
-module.exports = function (s, options) {
+module.exports = function (s, returnFullHostname) {
   if (!s || typeof s !== 'string') {
     return null;
   }
@@ -45,7 +45,7 @@ module.exports = function (s, options) {
     return null;
   }
 
-  if (options && options.returnHostname) {
+  if (returnFullHostname) {
     return hostname;
   }
 
