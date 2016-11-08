@@ -1,4 +1,4 @@
-var VALID_HOSTNAME_PART = /^[a-z0-9][a-z0-9\-]*$/i;
+var VALID_HOSTNAME_PART = /^[a-z0-9][a-z0-9-]*$/i;
 var MAX_SUBDOMAIN_LENGTH = 63;
 var ENDS_WITH_MYSHOPIFY = /\.myshopify.com$/i;
 
