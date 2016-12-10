@@ -5,8 +5,8 @@
   "repository": "marekweb/shopify-normalize-hostname",
   "main": "index.js",
   "scripts": {
-    "lint": "xo --space",
-    "test": "npm run lint && tap test.js"
+    "lint": "xo --space --fix",
+    "test": "tap test.js"
   },
   "author": "Marek Zaluski <marekz@gmail.com>",
   "license": "MIT",
