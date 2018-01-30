@@ -4,7 +4,7 @@ const ENDS_WITH_MYSHOPIFY = /\.myshopify.com$/i;
 
 const url = require('url');
 
-module.exports = function shopifyNormalizeHostname(s, returnFullHostname) {
+module.exports = function shopifyNormalizeHostname(s, options = {}) {
   if (!s || typeof s !== 'string') {
     return null;
   }
@@ -46,7 +46,7 @@ module.exports = function shopifyNormalizeHostname(s, returnFullHostname) {
     return null;
   }
 
-  if (returnFullHostname) {
+  if (!options.returnSubdomain) {
     return hostname;
   }
 

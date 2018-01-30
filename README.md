@@ -1,6 +1,8 @@
 # Normalize Shopify Hostnames
 
-This module takes an input string and returns the normalized Shopify store hostname, or alternatively just the store subdomain, or null if the input is not valid.
+Takes an input string and returns the normalized Shopify store hostname, or alternatively just the store subdomain, or null if the input is not valid.
+
+For any input that isn't a string or isn't a URL that can be turned into a `.myshopify.com` hostname, the return value is null. This makes it safe to accept unsafe user input.
 
 Valid input examples:
 
@@ -9,7 +11,7 @@ Valid input examples:
 - `https://fancy-widgets.myshopify.com`
 - `https://fancy-widgets.myshopify.com/some/path`
 
-Output for the above:
+Output for all of the above inputs:
 
 - Hostname: `fancy-widgets.myshopify.com`
 - Subdomain: `fancy-widgets`
@@ -18,25 +20,34 @@ The store hostname can always be re-created from the store subdomain by appendin
 
 ## Usage
 
-```ts
-normalizeOutput(hostname: string, returnFullHostname: boolean): string;
+```js
+normalizeOutput(input, options = {})
 ```
 
+| Parameter | type | |
+| --- | --- | --- |
+|`input` | any |  expected to be a string, but can be any value |
+| `options` | object | |
+| `options.returnSubdomain` | boolean = false | return only the subdomain instead of the entire hostname |
+| return | string \| null | the normalized hostname if valid, or null |
+
+## Example
+
 ```js
-var normalizeOutput = require('shopify-normalize-output');
+const normalizeOutput = require('shopify-normalize-output');
 
 normalizeHostname('fancy-widgets.myshopify.com');
-// Output: "fancy-widgets"
-
-normalizeHostname('fancy-widgets.myshopify.com', true);
 // Output: "fancy-widgets.myshopify.com"
+
+normalizeHostname('fancy-widgets.myshopify.com', { returnSubdomain: true });
+// Output: "fancy-widgets"
 ```
 
 ## Background: Shopify Store Hostnames
 
 Each Shopify store is uniquely identified by a **hostname** which consists of a subdomain on the `myshopify.com` domain.
 
-This is true regardless of whether the store has its own custom domain. It's always identified by a `myshopify.com` hostname behind the scenes.
+This is true regardless of whether the store has its own custom domain. It's always has a subdomain on `myshopify.com` behind the scenes.
 
 Here are examples of store hostnames:
 
@@ -51,8 +62,6 @@ When dealing with the Shopify API, this hostname is the primary way to identify 
 - The admin interface for a store at `https://{hostname}/admin`
 - The admin interface of an app within a store at `https://{hostname}/admin/apps/{api-key}`
 - ScriptTags URL which are automatically loaded with the hostname as a query parameter, like `https://example.com/script.js?shop={hostname}`
-
-Because the `myshopify.com` part is always the same, you can store just the **subdomain** of the hostname as the identifier.
 
 ## Definition of Valid Hostname
 

@@ -5,14 +5,13 @@
   "repository": "marekweb/shopify-normalize-hostname",
   "main": "index.js",
   "scripts": {
-    "lint": "xo --space --fix",
-    "test": "tap test.js"
+    "format": "prettier --write --single-quote *.js",
+    "test": "jest test.js"
   },
   "author": "Marek Zaluski <marekz@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "tap": "^8.0.0",
-    "tape": "^4.6.2",
-    "xo": "^0.17.0"
+    "jest": "^22.1.4",
+    "prettier": "^1.10.2"
   }
 }
