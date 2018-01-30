@@ -1,6 +1,6 @@
 {
   "name": "shopify-normalize-hostname",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "repository": "marekweb/shopify-normalize-hostname",
   "main": "index.js",
