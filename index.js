@@ -1,15 +1,16 @@
-var VALID_HOSTNAME_PART = /^[a-z0-9][a-z0-9-]*$/i;
-var MAX_SUBDOMAIN_LENGTH = 63;
-var ENDS_WITH_MYSHOPIFY = /\.myshopify.com$/i;
+const VALID_HOSTNAME_PART = /^[a-z0-9][a-z0-9-]*$/i;
+const MAX_SUBDOMAIN_LENGTH = 63;
+const ENDS_WITH_MYSHOPIFY = /\.myshopify.com$/i;
 
-var url = require('url');
+const url = require('url');
 
-module.exports = function (s, returnFullHostname) {
+module.exports = function shopifyNormalizeHostname(s, returnFullHostname) {
   if (!s || typeof s !== 'string') {
     return null;
   }
 
   if (!s.match(/^https?:/i)) {
+    // This is just to build a full url that can be parsed by url.parse
     s = 'http://' + s;
 
     if (!s.match(ENDS_WITH_MYSHOPIFY)) {
@@ -17,25 +18,25 @@ module.exports = function (s, returnFullHostname) {
     }
   }
 
-  var parsedURL = url.parse(s);
+  const parsedURL = url.parse(s);
 
   if (!parsedURL) {
     return null;
   }
 
   // Note that url.parse() converts the hostname to lowercase
-  var hostname = parsedURL.hostname;
+  const hostname = parsedURL.hostname;
 
   if (!hostname.match(ENDS_WITH_MYSHOPIFY)) {
     return null;
   }
 
-  var parts = hostname.split('.');
+  const parts = hostname.split('.');
   if (parts.length !== 3) {
     return null;
   }
 
-  var subdomain = parts[0];
+  const subdomain = parts[0];
 
   if (subdomain.length > MAX_SUBDOMAIN_LENGTH) {
     return null;
