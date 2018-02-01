@@ -1,5 +1,8 @@
 # Normalize Shopify Hostnames
 
+
+![npm](https://img.shields.io/npm/v/shopify-normalize-hostname.svg?maxAge=259200) ![travis](https://travis-ci.org/marekweb/shopify-normalize-hostname.svg?branch=master) ![node](https://img.shields.io/badge/node-%3E=8.1-blue.svg)
+
 Takes an input string and returns the normalized Shopify store hostname, or alternatively just the store subdomain, or null if the input is not valid.
 
 For any input that isn't a string or isn't a URL that can be turned into a `.myshopify.com` hostname, the return value is null. This makes it safe to accept unsafe user input.

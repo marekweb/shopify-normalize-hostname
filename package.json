@@ -13,5 +13,8 @@
   "devDependencies": {
     "jest": "^22.1.4",
     "prettier": "^1.10.2"
+  },
+  "engines": {
+    "node": ">= 8.1"
   }
 }
